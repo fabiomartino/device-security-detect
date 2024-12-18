@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 public class DeviceSecurityDetect {
     public boolean isDeviceRooted() {
-        return checkBuildTags() || checkSuBinary() || isSuBinaryAvailable();
+        return checkBuildTags() || checkSuBinary() || isSuBinaryAvailable() || areOtaCertsMissing();
     }
 
     private boolean checkBuildTags() {
@@ -32,6 +32,11 @@ public class DeviceSecurityDetect {
             if (new File(path).exists()) return true;
         }
         return false;
+    }
+
+    private boolean areOtaCertsMissing() {
+        final String OTA_CERTS_PATH = "/etc/security/otacerts.zip";
+        return !new File(OTA_CERTS_PATH).exists();
     }
 
     private boolean isSuBinaryAvailable() {
