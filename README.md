@@ -37,6 +37,7 @@ The Device Security Detect plugin offers advanced device security detection feat
 
 | Capacitor version | Plugin version |
 | ----------------- | -------------- |
+| 7.x               | 7.x            |
 | 6.x               | 6.x            |
 
 ## Supported Platforms
