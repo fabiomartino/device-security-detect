@@ -5,7 +5,7 @@
  */
 
 import { CapacitorException, ExceptionCode, WebPlugin } from '@capacitor/core';
-import type { DeviceSecurityDetectPlugin } from './definitions';
+import type { DeviceSecurityDetectPlugin, DeviceSecurityDetectResult } from './definitions';
 
 /**
  * @class DeviceSecurityDetectWeb
@@ -20,7 +20,7 @@ export class DeviceSecurityDetectWeb extends WebPlugin implements DeviceSecurity
    * 
    * @returns A rejected promise indicating the method is unimplemented on the web.
    */
-  async isJailBreakOrRooted(): Promise<{ value: boolean }> {
+  async isJailBreakOrRooted(): Promise<DeviceSecurityDetectResult> {
     console.warn('DeviceSecurityDetect: Method isJailBreakOrRooted is not supported on the web.');
     throw this.createUnimplementedError();
   }
@@ -30,8 +30,28 @@ export class DeviceSecurityDetectWeb extends WebPlugin implements DeviceSecurity
    * 
    * @returns A rejected promise indicating the method is unimplemented on the web.
    */
-  async pinCheck(): Promise<{ value: boolean }> {
+  async pinCheck(): Promise<DeviceSecurityDetectResult> {
     console.warn('DeviceSecurityDetect: Method pinCheck is not supported on the web.');
+    throw this.createUnimplementedError();
+  }
+
+  /**
+   * Check if the device is running on an emulator or simulator.
+   * 
+   * @returns A rejected promise indicating the method is unimplemented on the web.
+   */
+  async isSimulator(): Promise<DeviceSecurityDetectResult> {
+    console.warn('DeviceSecurityDetect: Method isSimulator is not supported on the web.');
+    throw this.createUnimplementedError();
+  }
+
+  /**
+   * Check if the application is running in debug mode.
+   * 
+   * @returns A rejected promise indicating the method is unimplemented on the web.
+   */
+  async isDebuggedMode(): Promise<DeviceSecurityDetectResult> {
+    console.warn('DeviceSecurityDetect: Method isDebuggedMode is not supported on the web.');
     throw this.createUnimplementedError();
   }
 

@@ -24,7 +24,7 @@ export interface DeviceSecurityDetectPlugin {
    * ```
    * @since 6.0.0
    */
-  isJailBreakOrRooted(): Promise<{ value: boolean }>;
+  isJailBreakOrRooted(): Promise<DeviceSecurityDetectResult>;
 
   /**
    * Check if a PIN, password, or biometric authentication is enabled on the device.
@@ -42,5 +42,54 @@ export interface DeviceSecurityDetectPlugin {
    * ```
    * @since 6.0.2
    */
-  pinCheck(): Promise<{ value: boolean }>;
+  pinCheck(): Promise<DeviceSecurityDetectResult>;
+
+  /**
+   * Check if the device is running on an emulator or simulator.
+   * 
+   * This method determines whether the application is running on a virtualized environment
+   * such as an Android Emulator or iOS Simulator.
+   * 
+   * @returns A promise that resolves to an object containing:
+   * - `value`: A boolean indicating if the device is an emulator or simulator.
+   * 
+   * @example
+   * ```typescript
+   * const result = await DeviceSecurityDetect.isSimulator();
+   * console.log(result.value); // true if running on an emulator/simulator, false otherwise
+   * ```
+   * @since 7.0.1
+   */
+  isSimulator(): Promise<DeviceSecurityDetectResult>;
+
+  /**
+   * Check if the application is running in debug mode.
+   * 
+   * This method detects whether the app is being debugged, which can indicate potential security risks.
+   * 
+   * @returns A promise that resolves to an object containing:
+   * - `value`: A boolean indicating if the app is in debug mode.
+   * 
+   * @example
+   * ```typescript
+   * const result = await DeviceSecurityDetect.isDebuggedMode();
+   * console.log(result.value); // true if in debug mode, false otherwise
+   * ```
+   * @since 7.0.1
+   */
+  isDebuggedMode(): Promise<DeviceSecurityDetectResult>;
+}
+
+/**
+ * @interface DeviceSecurityDetectResult
+ * @description Represents the result of a security check performed by the plugin.
+ */
+export interface DeviceSecurityDetectResult {
+  /**
+   * Indicates the result of the security check.
+   * 
+   * - `true`: The condition being checked is met (e.g., the device is rooted, an emulator, etc.).
+   * - `false`: The condition is not met (e.g., the device is not rooted, not an emulator, etc.).
+   */
+  value: boolean;
 }

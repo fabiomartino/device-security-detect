@@ -1,6 +1,5 @@
 import Foundation
 import Capacitor
-import LocalAuthentication
 
 @objc(DeviceSecurityDetectPlugin)
 public class DeviceSecurityDetectPlugin: CAPPlugin, CAPBridgedPlugin {
@@ -8,6 +7,8 @@ public class DeviceSecurityDetectPlugin: CAPPlugin, CAPBridgedPlugin {
     public let jsName = "DeviceSecurityDetect"
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "isJailBreakOrRooted", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "isSimulator", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "isDebuggedMode", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "pinCheck", returnType: CAPPluginReturnPromise)
     ]
     private let implementation = DeviceSecurityDetect()
@@ -19,15 +20,24 @@ public class DeviceSecurityDetectPlugin: CAPPlugin, CAPBridgedPlugin {
         ])
     }
 
+    @objc func isSimulator(_ call: CAPPluginCall) {
+        log("Checking if device is running on a simulator from plugin")
+        call.resolve([
+            "value": implementation.isSimulator()
+        ])
+    }
+
+    @objc func isDebuggedMode(_ call: CAPPluginCall) {
+        log("Checking if application is running in debug mode from plugin")
+        call.resolve([
+            "value": implementation.isDebuggedMode()
+        ])
+    }
+
     @objc func pinCheck(_ call: CAPPluginCall) {
         log("Checking PIN status from plugin")
-        let context = LAContext();
-        var error: NSError?
-
-        let isEvaluateSuccess = context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error)
-        
         call.resolve([
-            "value": isEvaluateSuccess
+            "value": implementation.pinCheck()
         ])
     }
 }
