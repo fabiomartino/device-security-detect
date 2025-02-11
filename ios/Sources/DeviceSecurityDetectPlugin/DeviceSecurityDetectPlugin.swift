@@ -1,6 +1,5 @@
 import Foundation
 import Capacitor
-import LocalAuthentication
 
 @objc(DeviceSecurityDetectPlugin)
 public class DeviceSecurityDetectPlugin: CAPPlugin, CAPBridgedPlugin {
@@ -21,13 +20,8 @@ public class DeviceSecurityDetectPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc func pinCheck(_ call: CAPPluginCall) {
         log("Checking PIN status from plugin")
-        let context = LAContext();
-        var error: NSError?
-
-        let isEvaluateSuccess = context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error)
-        
         call.resolve([
-            "value": isEvaluateSuccess
+            "value": implementation.pinCheck()
         ])
     }
 }
