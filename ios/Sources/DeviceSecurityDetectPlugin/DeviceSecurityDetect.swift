@@ -32,7 +32,10 @@ import LocalAuthentication
         "/Applications/SBSetttings.app",
         "/Applications/Snoop-itConfig.app",
         "/Applications/WinterBoard.app",
-        "/Applications/blackra1n.app"
+        "/Applications/blackra1n.app",
+        "/Applications/VnodeBypass.app",
+        "/Applications/RootHide.app",
+        "/Applications/Dopamine.app"
     ]
     
     private static let suspiciousSystemPathsToCheck: [String] = [
