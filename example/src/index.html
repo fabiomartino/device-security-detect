@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="hydrated">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Capacitor Device Security Detect</title>
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <script type="module"
+    src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.esm.js"></script>
+  <script nomodule src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements.js"></script>
+
+  <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.ico" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <meta name="theme-color" content="#31d53d" />
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+
+  <script type="module" src="./js/script.js"></script>
+</head>
+
+<body>
+  <ion-app>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Capacitor Device Security Detect</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <p align="center">
+        <img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png"
+          width="96" height="96" />
+      </p>
+      <p align="center">
+        <strong>
+          <a href="https://github.com/capacitor-community/device-security-detect" target="_blank">
+            <code>@capacitor-community/device-security-detect</code>
+          </a>
+        </strong>
+      </p>
+      <p>
+        This plugin helps detect if a device is rooted/jailbroken, has a secure lock screen enabled,
+        is running in an emulator, or is in debug mode. Useful for enhancing security in Capacitor apps.
+      </p>
+
+      <ion-list>
+        <ion-item>
+          <ion-label><strong>Root/Jailbreak Detection:</strong> Is the device compromised?</ion-label>
+          <ion-badge id="jailbreakStatus">Checking...</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>PIN/Password Check:</strong> Is secure authentication enabled?</ion-label>
+          <ion-badge id="pinStatus">Checking...</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Emulator Detection:</strong> Is the app running in an emulator?</ion-label>
+          <ion-badge id="emulatorStatus">Checking...</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Debug Mode Detection:</strong> Is the app running in debug mode?</ion-label>
+          <ion-badge id="debugStatus">Checking...</ion-badge>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-app>
+</body>
+
+</html>

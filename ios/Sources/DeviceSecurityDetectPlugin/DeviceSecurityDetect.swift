@@ -24,18 +24,26 @@ import LocalAuthentication
     private static let suspiciousAppsPathToCheck: [String] = [
         "/Applications/Cydia.app",
         "/Applications/FakeCarrier.app",
+        "/Applications/FlyJB.app",
         "/Applications/Icy.app",
         "/Applications/IntelliScreen.app",
         "/Applications/MxTube.app",
         "/Applications/RockApp.app",
-        "/Applications/SBSettings.app",
         "/Applications/SBSetttings.app",
+        "/Applications/SBSettings.app",
+        "/Applications/Sileo.app",
+        "/Applications/Electra.app",
+        "/Applications/unc0ver.app",
+        "/Applications/Xabsi.app",
+        "/Applications/zJailbreak.app",
+        "/Applications/Pangu.app",
+        "/Applications/Chimera.app",
         "/Applications/Snoop-itConfig.app",
-        "/Applications/WinterBoard.app",
-        "/Applications/blackra1n.app",
         "/Applications/VnodeBypass.app",
         "/Applications/RootHide.app",
-        "/Applications/Dopamine.app"
+        "/Applications/Dopamine.app",
+        "/Applications/WinterBoard.app",
+        "/Applications/blackra1n.app"
     ]
     
     private static let suspiciousSystemPathsToCheck: [String] = [
@@ -44,13 +52,20 @@ import LocalAuthentication
         "/.installed_unc0ver",
         "/Library/MobileSubstrate/CydiaSubstrate.dylib",
         "/Library/MobileSubstrate/DynamicLibraries",
+        "/Library/MobileSubstrate/CydiaSubstrate.dylib",
         "/Library/MobileSubstrate/DynamicLibraries/LiveClock.plist",
+        "/Library/MobileSubstrate/DynamicLibraries/zzzzLiberty.dylib",
         "/Library/MobileSubstrate/DynamicLibraries/Veency.plist",
         "/Library/MobileSubstrate/MobileSubstrate.dylib",
+        "/Library/PreferenceBundles/ABypassPrefs.bundle",
+        "/Library/PreferenceBundles/FlyJBPrefs.bundle",
+        "/Library/PreferenceBundles/LibertyPref.bundle",
+        "/Library/PreferenceBundles/ShadowPreferences.bundle",
         "/System/Library/LaunchDaemons/com.ikey.bbot.plist",
+        "/System/Library/LaunchDaemons/com.saurik.Cy@dia.Startup.plist",
         "/System/Library/LaunchDaemons/com.saurik.Cydia.Startup.plist",
-        "/bin.sh",
-        "/bin/bash",
+        // "/bin.sh",
+        // "/bin/bash",
         "/etc/apt",
         "/etc/apt/sources.list.d/electra.list",
         "/etc/apt/sources.list.d/sileo.sources",
@@ -73,16 +88,16 @@ import LocalAuthentication
         "/private/var/stash",
         "/private/var/tmp/cydia.log",
         "/usr/bin/cycript",
-        "/usr/bin/ssh",
+        // "/usr/bin/ssh",
         "/usr/lib/libcycript.dylib",
         "/usr/lib/libjailbreak.dylib",
         "/usr/libexec/cydia/",
         "/usr/libexec/cydia/firmware.sh",
-        "/usr/libexec/sftp-server",
-        "/usr/libexec/ssh-keysign",
+        // "/usr/libexec/sftp-server",
+        // "/usr/libexec/ssh-keysign",
         "/usr/local/bin/cycript",
         "/usr/sbin/frida-server",
-        "/usr/sbin/sshd",
+        // "/usr/sbin/sshd",
         "/usr/share/jailbreak/injectme.plist",
         "/var/checkra1n.dmg",
         "/var/jb",
@@ -101,15 +116,14 @@ import LocalAuthentication
     @objc public func isJailBreak() -> Bool {
         log("Checking if device is jailbroken")
 
-        if checkForJailbreakTools() || isContainsSuspiciousApps() || isSuspiciousSystemPathsExists() || canEditSystemFiles() {
-            return true
-        }
-
-        if isSuspiciousLibraryLoaded() || isFridaEnvironmentVariablePresent() || isForkOrSystemCallDetected() || checkDYLD() {
-            return true
-        }
-
-        return false
+        return checkForJailbreakTools()
+            || isContainsSuspiciousApps()
+            || isSuspiciousSystemPathsExists()
+            || canEditSystemFiles()
+            || isSuspiciousLibraryLoaded()
+            || isFridaEnvironmentVariablePresent()
+            || isForkOrSystemCallDetected()
+            || checkDYLD()
     }
 
     /**
@@ -281,32 +295,40 @@ import LocalAuthentication
      */
     private func checkDYLD() -> Bool {
         let suspiciousLibraries: Set<String> = [
-            "systemhook.dylib",
-            "SubstrateLoader.dylib",
-            "SSLKillSwitch2.dylib",
-            "SSLKillSwitch.dylib",
-            "MobileSubstrate.dylib",
-            "TweakInject.dylib",
+            "ABypass",
+            "Cephei",
+            "CustomWidgetIcons",
+            "cycript",
             "CydiaSubstrate",
             "cynject",
-            "CustomWidgetIcons",
+            "Electra",
+            "FlyJB",
+            "frida",
+            "FridaGadget",
+            "libcycript",
+            "libhooker",
+            "libsubstitute.dylib",
+            "MobileSubstrate.dylib",
             "PreferenceLoader",
             "RocketBootstrap",
-            "WeeLoader",
-            "/.file",
-            "libhooker",
-            "SubstrateInserter",
-            "SubstrateBootstrap",
-            "ABypass",
-            "FlyJB",
+            "SSLKillSwitch",
+            "SSLKillSwitch.dylib",
+            "SSLKillSwitch2",
+            "SSLKillSwitch2.dylib",
+            "systemhook.dylib",
             "Substitute",
-            "Cephei",
-            "Electra",
+            "substitute-loader.dylib",
+            "Substrate",
+            "/.file",
+            "SubstrateBootstrap",
+            "SubstrateBootstrap.dylib",
             "AppSyncUnified-FrontBoard.dylib",
             "Shadow",
-            "FridaGadget",
-            "frida",
-            "libcycript"
+            "SubstrateInserter",
+            "SubstrateInserter.dylib",
+            "SubstrateLoader.dylib",
+            "TweakInject.dylib",
+            "WeeLoader"
         ]
         
         for index in 0..<_dyld_image_count() {

@@ -1,0 +1,11 @@
+{
+  "appId": "com.example.plugin",
+  "appName": "Device Security Detect",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
