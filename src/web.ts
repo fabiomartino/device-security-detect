@@ -22,7 +22,7 @@ export class DeviceSecurityDetectWeb extends WebPlugin implements DeviceSecurity
    */
   async isJailBreakOrRooted(): Promise<DeviceSecurityDetectResult> {
     console.warn('DeviceSecurityDetect: Method isJailBreakOrRooted is not supported on the web.');
-    throw this.createUnimplementedError();
+    throw this.createUnimplementedError('Method isJailBreakOrRooted');
   }
 
   /**
@@ -32,7 +32,7 @@ export class DeviceSecurityDetectWeb extends WebPlugin implements DeviceSecurity
    */
   async pinCheck(): Promise<DeviceSecurityDetectResult> {
     console.warn('DeviceSecurityDetect: Method pinCheck is not supported on the web.');
-    throw this.createUnimplementedError();
+    throw this.createUnimplementedError('Method pinCheck');
   }
 
   /**
@@ -42,7 +42,7 @@ export class DeviceSecurityDetectWeb extends WebPlugin implements DeviceSecurity
    */
   async isSimulator(): Promise<DeviceSecurityDetectResult> {
     console.warn('DeviceSecurityDetect: Method isSimulator is not supported on the web.');
-    throw this.createUnimplementedError();
+    throw this.createUnimplementedError('Method isSimulator');
   }
 
   /**
@@ -52,7 +52,7 @@ export class DeviceSecurityDetectWeb extends WebPlugin implements DeviceSecurity
    */
   async isDebuggedMode(): Promise<DeviceSecurityDetectResult> {
     console.warn('DeviceSecurityDetect: Method isDebuggedMode is not supported on the web.');
-    throw this.createUnimplementedError();
+    throw this.createUnimplementedError('Method isDebuggedMode');
   }
 
   /**
@@ -60,9 +60,9 @@ export class DeviceSecurityDetectWeb extends WebPlugin implements DeviceSecurity
    * 
    * @returns {CapacitorException} An exception with an `Unimplemented` code and a descriptive message.
    */
-  private createUnimplementedError(): CapacitorException {
+  private createUnimplementedError(message: string): CapacitorException {
     return new CapacitorException(
-      'DeviceSecurityDetect is not supported on the web.',
+      `${message} This feature requires native platform support.`,
       ExceptionCode.Unimplemented,
     );
   }

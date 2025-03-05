@@ -11,7 +11,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.3'
+        classpath 'com.android.tools.build:gradle:8.8.2'
     }
 }
 
@@ -21,7 +21,7 @@ android {
     namespace "com.mukha.andrei.plugins.device.secutiry.detect"
     compileSdk project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion as Integer : 35
     defaultConfig {
-        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion as Integer : 23
+        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion as Integer : 24
         targetSdkVersion project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion as Integer : 35
         versionCode 1
         versionName "1.0"
